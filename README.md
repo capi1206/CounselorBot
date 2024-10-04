@@ -15,15 +15,19 @@ This bot is designed to provide personalized soft skills utilizing a vector data
 
 2. **User Inquiry**: When the user poses a question, the bot analyzes the query using vector embeddings to find the closest related conversation from its history.
 
-3. **Contextual Prompt Creation**: Based on the user’s question and the identified context, the bot creates a prompt that tailors the response to a specific coaching style. This involves framing a narrative that includes:
+3. **Contextual Prompt Creation**: Based on the user’s question together identified context, the bot creates a prompt, to be made later to an LLM, this prompt is made to match the query with the bot coaching style. This involves framing a narrative that includes:
    - Previous insights relevant to the user’s question
    - The user's current inquiry framed within that context
 
-4. **Response Generation**: The prompt is then fed to a language model (LLM) to generate a response as if it were coming from the chosen coach. For example:
+
+4. **Response Generation**: The prompt is then fed to a language model (LLM) to generate a response, the way that default model works is to make a completion of a story. So that when a new query comes, a short script is created using the relevant conversation history and the user's question.
+
+For example, assuming the following situation:
    - User: "I feel that I don't have good communication within my team at work."
    - Generated Prompt: "In previous conversations, it was mentioned that effective communication is key for teamwork. A Communication Skills Coach, an expert in solving problems within teams for more effective communication, responds to the user: '..."
+So that in this way the LLM can complete the story and a relevant reply can be extracted from this complete paragraph.   
 
-5. **Summary and Storage**: After the LLM generates a response, the bot creates a summary of the interaction. This summary, along with the user’s question and the response, is stored in a vector database for future reference.
+5. **Summary and Storage**: After the LLM generates a response, the bot creates a summary of the interaction. This summary, along with the user’s question and the response, is stored in a vector database for future reference, when a context is searched.
 
 ## Features
 
@@ -36,20 +40,10 @@ This bot is designed to provide personalized soft skills utilizing a vector data
 
 To interact with the Soft Skills Conversational Bot:
 
-1. Launch the bot in your preferred platform.
-2. Type your question or concern related to soft skills.
+1. The configuration for Slack integration must be made. And the relevant keys must be added in the base code.
+2. Start interacting with the Bot.
 3. Receive tailored advice and insights.
 
-## Example Interaction
-
-### User
-"I struggle with providing feedback to my team."
-
-### Bot
-"In previous conversations, it was discussed that giving constructive feedback can enhance team performance. A Feedback Techniques Coach suggests: '..."
-
-### Summary
-The interaction is summarized and saved for future reference.
 
 
 
@@ -109,10 +103,10 @@ SLACK_SIGNING_SECRET: The Signing Secret from Step 5
 SLACK_APP_LEVEL_TOKEN: The App Level Token from Step 3
 SLACK_CHANNEL_ID: The ID of the Slack channel where your bot will operate (if applicable)
 We will use the slack-bolt python package. It’s a framework to build Slack apps in a flash with the latest platform features.
-You can simply install it via pip:
+
 
 ## Text to voice
 
-Tect to voice to generate an answer back to the user is in `text2voice/text2voice.py` 
+Text to voice to generate an answer back to the user is in `text2voice/text2voice.py` 
 in this script an audio file is generated from a sample input. Here is documentation
-of the library TTS https://docs.coqui.ai/en/latest/inference.html.
+of the library TTS https://docs.coqui.ai/en/latest/inference.html. This one requires `torch` and `TTS` that needs a conflicting version of `numpy` (greater than 2) so it has to be run separately.
