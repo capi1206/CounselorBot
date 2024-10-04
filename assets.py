@@ -1,9 +1,10 @@
-from transformers import T5ForConditionalGeneration, T5Tokenizer
-import torch
+from transformers import T5ForConditionalGeneration, T5Tokenizer, AutoTokenizer, AutoModelForCausalLM
 from langfuse.decorators import observe
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+import torch
 import numpy as np
+
 
 class SummaryGen:
     """Class that makes summaries of the conversations, 
