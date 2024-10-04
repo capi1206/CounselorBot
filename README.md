@@ -44,9 +44,25 @@ To interact with the Soft Skills Conversational Bot:
 2. Start interacting with the Bot.
 3. Receive tailored advice and insights.
 
+## Libraries used
 
+The loaded models are created as classes that receive a model as a parameter, the default values are as follows:
 
+### T5 transformers model
+Available at hugging face https://huggingface.co/docs/transformers/en/model_doc/t5 . It is used for summarization
 
+### bert-base-nli-mean-tokens
+This model is used for the embeddings, available at hugging face https://huggingface.co/sentence-transformers/bert-base-nli-mean-tokens
+
+### leutherAI/gpt-neo-1.3B
+For the LLM is it used the pretrained EleutherAI/gpt-neo-1.3B available at hugging face https://huggingface.co/EleutherAI/gpt-neo-1.3B it is  a replication of the GPT-3 architecture
+
+### Pinecone
+This vector data base is used to store the previous conversations summaries thereof. Uses cosine similarity to find the mostrelevant summary to a given query.
+
+## Know limitations and future improvements
+The embeddings, summarization of conversations as well as the used LLM can be improved, for making a reply not that delayed this models were chosen. On top of that the model is running in CPU, running it on GPU would make the responses faster but this would imply some additional costs. The retrieval mechanism for finding the relevant context could use a more efficient strategy and the creation of the summary can be made to extract the most relevant points in the conversarion. Implementing a more robust LLM for prompting will allow for longer queries, if needed. 
+ 
 ## Connecting to Slack
 
 Follow this instructions https://medium.com/@hamza-shafique/how-to-set-up-a-slack-bot-a-step-by-step-guide-19c8cc09ae34
