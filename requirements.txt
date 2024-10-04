@@ -1,0 +1,14 @@
+numpy<2
+pandas
+torch
+pinecone-client
+protoc-gen-openapiv2
+sentence-transformers
+transformers
+protobuf
+slack-sdk
+slack-bolt
+python-dotenv
+certifi
+langfuse
+
